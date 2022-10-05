@@ -1,0 +1,404 @@
+@font-face {
+    font-family: 'icomoon';
+    src: url('fonts/icomoon.eot?32mj6l');
+    src: url('fonts/icomoon.eot?32mj6l#iefix') format('embedded-opentype'),
+        url('fonts/icomoon.ttf?32mj6l') format('truetype'),
+        url('fonts/icomoon.woff?32mj6l') format('woff'),
+        url('fonts/icomoon.svg?32mj6l#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+}
+
+.clearfix:before,
+.clearfix:after {
+    content: "";
+    display: table;
+}
+
+.clearfix:after {
+    clear: both;
+}
+
+.clearfix {
+    *zoom: 1;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+}
+
+li {
+    list-style: none;
+}
+
+input {
+    outline: none;
+}
+
+body {
+    margin: 0 auto;
+    font: 14px "Microsoft YaHei";
+    height: 1000px;
+    min-width: 320px;
+    max-width: 640px;
+}
+
+div,
+span {
+    box-sizing: content-box;
+}
+
+img {
+    border-radius: 10px;
+    object-fit: cover;
+}
+
+/* 登录头 */
+.loginhead {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 50px;
+    line-height: 50px;
+    background-color: #000000;
+    z-index: 1;
+}
+
+.loginhead-left {
+    float: left;
+    margin-left: 20px;
+    color: white;
+}
+
+.loginhead-left::before {
+    font-family: 'icomoon';
+    content: "";
+}
+
+.loginhead-right {
+    float: right;
+    margin-right: 15px;
+    font-weight: 700px;
+    color: white;
+}
+
+/* 搜索 */
+.search {
+    position: relative;
+    width: 100%;
+    top: 44px;
+    height: 50px;
+    line-height: 50px;
+    background-color: #ef5b9c;
+    overflow: hidden;
+}
+
+.search-left {
+    margin: 11px 44px auto 10px;
+    height: 34px;
+    border-radius: 20px;
+    border-color: white;
+    color: gray;
+    background-color: white;
+    overflow: hidden;
+}
+
+.search-logo {
+    position: absolute;
+    left: 20px;
+    top: 4px;
+    font-family: 'icomoon';
+    font-size: 14px;
+}
+
+.search-left input {
+    border: none;
+    position: absolute;
+    left: 33px;
+    margin-top: 8px;
+    height: 23px;
+    width: 75%;
+    padding-left: 7px;
+}
+
+.search-left input::placeholder {
+    color: gray;
+}
+
+.search-right {
+    position: absolute;
+    top: 2px;
+    right: 4px;
+    color: white;
+    font-weight: 700px;
+}
+
+.nothing {
+    height: 50px;
+}
+
+/* 广播 */
+.notice {
+    font-family: 'icomoon';
+    margin-left: 10px;
+}
+
+/* 榜前三 */
+.ranking {
+    margin: 15px;
+    height: 192px;
+
+}
+
+.rank-title {
+    position: relative;
+    border: 1px solid #ef5b9c;
+    height: 30px;
+    width: 100%;
+    border-radius: 15px;
+    text-align: center;
+    line-height: 30px;
+    color: #ef5b9c;
+    font-weight: 700;
+}
+
+.longline {
+    position: absolute;
+    left: 50%;
+    width: 1px;
+    height: 30px;
+    border-right: 1px solid #ef5b9c;
+}
+
+.rank-title .nvshen {
+    float: left;
+    width: 50%;
+    border-radius: 15px 0 0 15px;
+}
+
+.rank-title .nanshen {
+    float: right;
+    width: 50%;
+    border-radius: 0 15px 15px 0;
+}
+
+.rank-3pic {
+    width: 100%;
+    height: 120px;
+    margin-top: 25px;
+}
+
+.rank-123 {
+    position: relative;
+    height: 120px;
+    text-align: center;
+    float: left;
+}
+
+.rank-3pic .rank-3,
+.rank-3pic .rank-2 {
+    width: 32%;
+    margin-top: 30px;
+}
+
+.rank-3pic .rank-1 {
+    width: 36%;
+}
+
+.rank23profile {
+    width: 70px;
+    height: 70px;
+}
+
+.rank1profile {
+    width: 86px;
+    height: 86px;
+}
+
+.rank23logo,
+.rank1logo {
+    position: absolute;
+    left: 50%;
+    margin-left: -12px;
+    bottom: 38px;
+    width: 24px;
+}
+
+.rank-1 .rank1logo {
+    bottom: 23px;
+}
+
+.rank-123 p {
+    margin-top: 8px;
+}
+
+.recommend {
+    margin: 0 15px;
+    height: 160px;
+}
+
+.newimgsdiv {
+    overflow-x: auto;
+    white-space: nowrap;
+    justify-content: space-evenly;
+    padding-bottom: 20px;
+}
+
+.newpicword {
+    display: inline-block;
+    position: relative;
+    height: 90px;
+    text-align: center;
+}
+
+.newimg {
+    height: 68px;
+    width: 68px;
+    margin: 0 10px;
+}
+
+.newword {
+    display: block;
+}
+
+.kind_selection>div {
+    float: left;
+    width: 33%;
+    height: 20px;
+    line-height: 20px;
+    text-align: center;
+    padding: 12px 0;
+    border-bottom: 1px solid #ef5b9c;
+}
+
+.first_impression {
+
+    padding: 12px 16px;
+
+}
+
+.first_impression .pic_level {
+    float: left;
+    height: 130px;
+}
+
+.first_impression .divprofile {
+    width: 80px;
+    height: 80px;
+}
+
+.first_impression .profile {
+    height: 80px;
+    width: 80px;
+}
+
+.first_impression .leveltag {
+    height: 20px;
+    width: 50px;
+    text-align: center;
+    font-size: 15px;
+    margin-top: 1px;
+    color: #ee5b9b;
+    border-radius: 20px;
+    border: 1px solid #ee5b9b;
+}
+
+.first_impression .every_clerk {
+    height: 150px;
+    width: 100%;
+}
+
+.first_impression .clerk_firstinfo {
+    float: left;
+    height: 130px;
+    width: calc(100% - 100px);
+    padding-left: 10px;
+}
+
+.clerk_firstinfo .firstinfo_row1 {
+    height: 25px;
+}
+
+.clerk_firstinfo .name {
+    float: left;
+    padding: 2px 3px;
+    height: 22px;
+    font-weight: 700;
+    font-size: 16px;
+}
+
+.sexytag {
+    margin-left: 10px;
+}
+
+.clerk_firstinfo .service {
+    float: right;
+}
+
+.clerk_firstinfo .tags {
+    height: 56px;
+    margin-top: 5px;
+}
+
+.clerk_firstinfo .tag {
+    display: inline-block;
+    padding: 1px 2px;
+    margin: 2px 0;
+    border: 1px solid #ef5b9c;
+    border-radius: 20px;
+    font-size: 10px;
+    color: #ef5b9c;
+    /* width: 5px;
+    box-sizing: border-box; */
+}
+
+
+.firstinfo_row3 .voice {
+    float: left;
+    width: 82px;
+    height: 32px;
+    background-color: #ef5b9c;
+    border-radius: 16px;
+    text-align: center;
+    line-height: 32px;
+}
+
+.firstinfo_row3 .voice p {
+    color: white;
+}
+
+.firstinfo_row3 .voice p::before {
+    font-family: "icomoon";
+    content: "";
+    font-weight: 400px;
+    margin-left: -5px;
+    margin-right: 3px;
+}
+
+.firstinfo_row3 .right_button {
+    float: right;
+    line-height: 32px;
+    font-weight: 700px;
+}
+
+.footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 50px;
+    background-color: #ef5b9c;
+    text-align: center;
+    line-height: 50px;
+    color: white;
+}
+
+.footer>div {
+    float: left;
+    width: 33%;
+}

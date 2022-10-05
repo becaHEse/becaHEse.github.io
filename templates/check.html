@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新店员申请</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            margin: 0 auto;
+            font: 14px "Microsoft YaHei";
+        }
+        li {
+            list-style: none;
+        }
+        img {
+            object-fit: cover;
+        }
+        .clearfix:before,
+        .clearfix:after {
+            content: "";
+            display: table;
+        }
+
+        .clearfix:after {
+            clear: both;
+        }
+
+        .clearfix {
+            *zoom: 1;
+        }
+        .search {
+            position: fixed;
+            top: 0;
+            background-color: white;
+            height: 50px;
+            width: 100%;
+            border-bottom: 3px solid #ef5b9c;
+        }
+        .search input {
+            width: 70%;
+            margin-left: 20px;
+            margin-top: 10px ;
+            height: 30px;
+            background-color: #f1f3f4;
+            padding-left: 20px;
+            outline: none;
+            border: 1px solid #ef5b9c;
+            border-radius: 20px;
+        }
+        .search span {
+            position: absolute;
+            top:14px;
+            right: 10px;
+            width: 50px;
+            height: 40px;
+            text-align: center;
+        }
+        .nothing {
+            height: 55px;
+        }
+        .apply_firstinfo {
+            padding: 10px;
+            border-bottom: 1px solid #ef5b9c;
+            margin-bottom: 5px;
+        }
+        .apply_firstinfo img {
+            float: left;
+            height: 40px;
+        }
+        .apply_left {
+            float: left;
+            margin-left: 10px;
+        }
+        .apply_left h4 {
+            margin-bottom: 3px;
+        }
+        .apply_left span:nth-of-type(1)::after {
+            content: "|";
+            padding-left: 5px;
+            padding-right: 5px;
+            height: 10px;
+            color: black;
+            width: 2px;
+        }
+        .apply_right {
+            float: right;
+            text-align: center;
+        }
+        .apply_right h5 {
+            color: green;
+            border: 1px solid green;
+            margin-bottom: 5px;
+        }
+        form {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="search">
+        <input type="text" placeholder="用户昵称/手机号/微信号">
+        <span>搜索</span>
+    </div>
+    <div class="nothing"></div>
+<ul>
+    {% for item in data_list %}
+    <form action="check_detail">
+        <input type="text" name="id" value={{item.id}}>
+        <input type="submit" id={{item.id}}>
+    </form>
+    <label for={{item.id}}>
+    <li id={{item.id}}>
+        <div class="apply_firstinfo clearfix">
+            <img src="../static/images/clerk_s1.jpg" alt="">
+            <div class="apply_left">
+                <h4>{{item.username}}</h4>
+                <span>{{item.sexy}}</span>
+                <span>{{item.area}}</span>
+            </div>
+            <div class="apply_right">
+                {% if item.isclerk=="1" %}
+                <h5>已通过</h5>
+                {% elif item.isclerk=="0" %}
+                <h5 style="color: #ce9178;border-color: #ce9178;">待审核</h5>
+                {% elif item.isclerk=="2" %}
+                <h5 style="color:red;border-color: red;">未通过</h5>
+                {% endif %}
+                <span>{{item.aptime2}}</span>
+            </div>
+        </div>
+        </li>
+    </label>
+        {% endfor %}
+    </ul>
+    
+
+</body>
+</html>

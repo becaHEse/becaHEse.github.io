@@ -1,0 +1,385 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>店员信息</title>
+</head>
+<style>
+    @font-face {
+    font-family: 'icomoon';
+    src: url('fonts/icomoon.eot?32mj6l');
+    src: url('fonts/icomoon.eot?32mj6l#iefix') format('embedded-opentype'),
+        url('fonts/icomoon.ttf?32mj6l') format('truetype'),
+        url('fonts/icomoon.woff?32mj6l') format('woff'),
+        url('fonts/icomoon.svg?32mj6l#icomoon') format('svg');
+    font-weight: normal;
+    font-style: normal;
+    font-display: block;
+    }
+    * {
+        margin: 0;
+        padding: 0;
+    }
+    body {
+        background-color: #e0e0e0;
+        font: 14px "Microsoft YaHei";
+        line-height: 2;
+    }
+    div {
+        box-sizing: border-box;
+    }
+    img {
+        object-fit: cover;
+    }
+    .bg_div {
+        position: relative;
+        padding-bottom: 40px;
+    }
+    .background_img {
+        width: 100%;
+    }
+    .tp_3 {
+        margin: 0 10px;
+        background-color: white;
+        border-radius: 10px;
+    }
+    .pic4 {
+        position: absolute;
+        bottom: 0;
+        width: calc(100% - 20px);
+        
+        padding: 5px 5px 5px 10px;
+    }
+    .pic4_one {
+        width: 75px;
+        height: 75px;
+        border-radius: 10px;
+        margin-right: 5px;
+    }
+    .enlarge {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 700px;
+        background-color: rgba(222, 225, 230,0.5);
+        text-align: center;
+        z-index: 1;
+    }
+    #enlargeimg {
+        margin-top: 150px;
+        width: 95%;
+        border: 1px solid gray;
+        z-index: 2;
+    }
+    .closelarge {
+        position: fixed;
+        right: 5%;
+        top: 120px;
+        z-index: 2;
+        width: 10px;
+        height: 10px;
+        font-weight: 1000;
+        font-size: 20px;
+    }
+    .info {
+        height: 180px;
+        margin-top: 10px;
+        padding: 10px;
+    }
+    .profile img {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+    }
+    .info_left {
+        float: left;
+        height: 160px;
+    }
+    .info_left .voice {
+    float: left;
+    width: 82px;
+    height: 32px;
+    background-color: #ef5b9c;
+    border-radius: 16px;
+    text-align: center;
+    line-height: 32px;
+    }
+
+    .info_left .voice p {
+        color: white;
+    }
+
+    .info_left .voice p::before {
+        font-family: "icomoon";
+        content: "";
+        font-weight: 400px;
+        margin-left: -5px;
+        margin-right: 3px;
+    }
+    .info_left2 {
+        float: left;
+        margin-left: 10px;
+        height: 160px;
+        width: calc(100% - 100px);
+        line-height: 1.8;
+    }
+    .info_left2 .name {
+    float: left;
+    padding: 2px 3px;
+    height: 22px;
+    font-weight: 700;
+    font-size: 16px;
+    }
+    .info_left2 .sexytag {
+    margin-left: 10px;
+    }
+    .info_left2 .isonline {
+        color: #07c160;
+    }
+    .info_left2 .name_age_area {
+        color: #ef5b9c;
+    }
+    .info_left2 .tags {
+    height: 56px;
+    margin-top: 5px;
+    }
+
+    .info_left2 .tag {
+        display: inline-block;
+        padding: 1px 2px;
+        margin: 2px 0;
+        border: 1px solid #ef5b9c;
+        border-radius: 20px;
+        font-size: 10px;
+        color: #ef5b9c;
+        /* width: 5px;
+        box-sizing: border-box; */
+    }
+    .price {
+        margin-top: 10px;
+        margin-bottom: 70px;
+        border-collapse: collapse;
+        padding: 20px;
+        
+    }
+    .price table {
+        border-collapse: collapse;
+        text-align: center;
+        width: 100%;
+    }
+    .price td,
+    th {
+        border: 2px solid #e0e0e0;
+    }
+
+    td[class="service_type"] {
+        width: 30%;
+    }
+    td {
+        width: 35%;
+    }
+    .explain {
+        color: gray;
+        margin: 5px auto;
+    }
+    .footer {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    width: 100%;
+    height: 50px;
+    background-color: white;
+    text-align: center;
+    line-height: 50px;
+    color: white;
+    }
+    .footer .index {
+        float: left;
+        margin-left: 20px;
+        border-radius: 50%;
+        height: 30px;
+        width: 30px;
+        color: #ef5b9c;
+    }
+    .footer .xiadan {
+        float: left;
+        margin: 10px 30px;
+        height: 30px;
+        width: calc(100% - 120px);
+        border-radius: 20px;
+        background-color: #ef5b9c;
+        line-height: 30px;
+    }
+    
+</style>
+<body>
+    <div class="bg_div">
+        <img src="../static/images/clerk/{{data_dict.imgurl}}-1.jpg" class="background_img">
+        <div class="pic4 tp_3">
+            <img src="../static/images/clerk/{{data_dict.imgurl}}-1.jpg" class="pic4_one">
+            <img src="../static/images/clerk/{{data_dict.imgurl}}-2.jpg" class="pic4_one">
+            <img src="../static/images/clerk/{{data_dict.imgurl}}-3.jpg" class="pic4_one">
+            <img src="../static/images/clerk/{{data_dict.imgurl}}-4.jpg" class="pic4_one">
+        </div>
+    </div>
+        <div class="enlarge">
+            <img src="" id="enlargeimg">
+            <div class="closelarge">x</div>
+        </div>
+
+        <div class="info tp_3">
+            <div class="info_left">
+                <div class="profile">
+                    <img src="../static/images/clerk_s.jpg">
+                </div>
+                <div class="voice">
+                    <p>播放</p>
+                </div>
+            </div>
+            <div class="info_left2">
+                <div class="name">{{data_dict.username}}
+                    {% if data_dict.sexy=="男" %}
+                    <span class="sexytag" style="color: rgb(5, 5, 161);">♂</span>
+                    {% elif data_dict.sexy=='女' %}
+                    <span class="sexytag" style="color:rgb(248, 105, 129);">♀</span>
+                    {% endif %}
+
+                    {% if data_dict.isonline=="1" %}
+                    <div class="isonline">在线</div>
+                    {% elif data_dict.isonline=='0' %}
+                    <div class="isonline" style="color:gray;">离线</div>
+                    {% endif %}
+                    <h5 class="name_age_area">{{data_dict.sexy}} {{data_dict.age}}岁 {{data_dict.area}}</h5>
+                    <div class="tags">
+                        {% if data_dict.tag1 %}
+                        <span class="tag">{{data_dict.tag1}}</span>
+                        {% endif %}
+                        {% if data_dict.tag2 %}
+                        <span class="tag">{{data_dict.tag2}}</span>
+                        {% endif %}
+                        {% if data_dict.tag3 %}
+                        <span class="tag">{{data_dict.tag3}}</span>
+                        {% endif %}
+                        {% if data_dict.tag4 %}
+                        <span class="tag">{{data_dict.tag4}}</span>
+                        {% endif %}
+                        {% if data_dict.tag5 %}
+                        <span class="tag">{{data_dict.tag5}}</span>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="price tp_3">
+            <table>
+                <thead>
+                <tr>
+                    <th colspan="2">服务项目</th>
+                    <th>价格</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td rowspan="5" class="service_type">文字+语言条</td>
+                    <td>30分钟</td>
+                    <td>{{price_dict.w30min}}</td>
+                </tr>
+                <tr>
+                    <td>60分钟</td>
+                    <td>{{price_dict.w60min}}</td>
+                </tr>
+                <tr>
+                    <td>1天</td>
+                    <td>{{price_dict.w1day}}</td>
+                </tr>
+                <tr>
+                    <td>7天</td>
+                    <td>{{price_dict.w7day}}</td>
+                </tr>
+                <tr>
+                    <td>包月</td>
+                    <td>{{price_dict.w1month}}</td>
+                </tr>
+                <tr>
+                    <td rowspan="5" class="service_type">语音连麦</td>
+                    <td>30分钟</td>
+                    <td>{{price_dict.y30min}}</td>
+                </tr>
+                <tr>
+                    <td>60分钟</td>
+                    <td>{{price_dict.y60min}}</td>
+                </tr>
+                <tr>
+                    <td>1天</td>
+                    <td>{{price_dict.y1day}}</td>
+                </tr>
+                <tr>
+                    <td>7天</td>
+                    <td>{{price_dict.y7day}}</td>
+                </tr>
+                <tr>
+                    <td>包月</td>
+                    <td>{{price_dict.y1month}}</td>
+                </tr>
+                <tr>
+                    <td rowspan="3" class="service_type">专属买断</td>
+                    <td>1天</td>
+                    <td>{{price_dict.m1day}}</td>
+                </tr>
+                <tr>
+                    <td>3天</td>
+                    <td>{{price_dict.m3day}}</td>
+                </tr>
+                <tr>
+                    <td>7天</td>
+                    <td>{{price_dict.m7day}}</td>
+                </tr>
+            </tbody>
+            </table>
+            <p class="explain">
+                下单备注的内容涉黄、擦边，系统不接单！<br>
+                包天、包周、包月每天服务时长不低于5小时。<br>
+                未成年禁止下单！<br>
+                禁止向店员出借钱财。<br>
+            </p>
+        </div>
+
+        <div class="footer">
+            <div class="index">首页</div>
+            <div class="xiadan">立即下单</div>
+        </div>
+</body>
+<script>
+    var fourimg=document.getElementsByClassName('pic4')[0];
+    var enlargeimg=document.getElementById('enlargeimg');
+    var enlargediv=document.getElementsByClassName('enlarge')[0];
+    var close=document.getElementsByClassName('closelarge')[0];
+    
+    fourimg.addEventListener('click',function(){
+        imgtarget=event.target;
+        console.log(imgtarget);
+        console.log(fourimg);
+        
+        if(imgtarget!=fourimg){
+            enlargeimg.src=imgtarget.src;
+            console.log(imgtarget.src);
+            enlargediv.style.display='block';
+        }
+    })
+    close.addEventListener('click',function(){
+        enlargediv.style.display='none';
+
+    })
+
+    var return_index = document.querySelector('.footer .index');
+    return_index.addEventListener('click' ,function(){
+        location.href='index';
+    })
+</script>
+</html>

@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>店员申请</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            margin: 0 auto;
+            background-color: #e8e8e8;
+            font: 14px "Microsoft YaHei";
+
+        }
+        input {
+            outline: none;
+        }
+        img {
+            object-fit: cover;
+        }
+        .firstpart {
+            margin-bottom: 20px;
+            text-align: center;
+            background-color: white;
+            height: 130px;
+            border-radius: 0 0 20px 20px;
+        }
+        .firstpart .title {
+            height: 50px;
+            background-color: #ef5b9c;
+            color: white;
+            line-height: 50px;
+        }
+        .firstpart p {
+            margin: 18px 20px;
+        }
+        form {
+            line-height: 50px;
+        }
+        form input {
+            -webkit-tap-highlight-color:transparent;
+        }
+        .secondpart {
+            background-color: white;
+            border-radius: 20px;
+            padding: 25px;
+        }
+        .secondpart input[type="text"],
+        .secondpart input[type="number"],
+        .secondpart input[type="tel"]{
+            width: 80%;
+            float: right;
+            padding-top: 20px;
+            border: none;
+        }
+        .secondpart input[type="file"] {
+            width: 70%;
+            float: right;
+            padding: 10px 0;
+            border: none;
+        }
+        .secondpart input[type="radio"] {
+            margin-left: 35px;
+        }
+        .secondpart input[type="reset"] {
+            float: left;
+            background-color: gray;
+            height: 40px;
+            width: 100px;
+            border: none;
+            border-radius: 20px;
+            color: white;
+            font-weight: 700;
+        }
+        .secondpart input[type="submit"] {
+            float: right;
+            background-color: #ef5b9c;
+            height: 40px;
+            width: 100px;
+            border: none;
+            border-radius: 20px;
+            color: white;
+            font-weight: 700;
+        }
+        textarea {
+            padding-left: 10px;
+            padding-top: 10px;
+            resize: none;
+        }
+        .inimg {
+            display: none;
+        }
+        .inimglabel {
+            position: relative;
+            display: none;
+            height: 69px;
+            width: 69px;
+            margin-right: 5px;
+        }
+        #label1 {
+            display: inline-block;
+        }
+        .preimg {
+            position: absolute;
+            height: 69px;
+            width: 69px;
+            border: 1px solid gray;
+        }
+    </style>
+</head>
+<body>
+    <div class="firstpart">
+        <div class="title">
+            <h3>店员申请资料填写</h3>
+        </div>
+        <p>欢迎申请成为店员，请先认真填写资料，我们将尽快审核你的资料，耐心等候，最后祝你好运~</p>
+    </div>
+    <div class="secondpart">
+    <form method="post" action="/register" enctype="multipart/form-data">
+        昵称<input type="text" name="username" required="required" placeholder="输入昵称"><br>
+        性别<input type="radio" name="sexy" value="男" checked="checked"><label for="男">男</label>
+            <input type="radio" name="sexy" value="女"><label for="女">女</label><br>
+        年龄<input type="number" name="age" required="required" placeholder="输入年龄"><br>
+        微信号<input type="text" name="wxid" required="required" placeholder="输入微信号"><br>
+        手机号<input type="tel" name="tel" required="required" placeholder="输入手机号"><br>
+        城市<input type="text" name="area" required="required" placeholder="输入所在城市"><br>
+        上传图片 (4张)<br>
+        <input type="file" class="inimg" id="inimg1" name="inimg1" accept=".jpg,.jpeg,.png" required="required">
+        <label for="inimg1" id="label1" class="inimglabel">
+            <img src="../static/images/preimg.png" class="preimg" id="preimg1">
+        </label>
+
+        <input type="file" class="inimg" id="inimg2" name="inimg2" accept=".jpg,.jpeg,.png" required="required">
+        <label for="inimg2" id="label2" class="inimglabel">
+            <img src="../static/images/preimg.png" class="preimg" id="preimg2">
+        </label>
+        <input type="file" class="inimg" id="inimg3" name="inimg3" accept=".jpg,.jpeg,.png" required="required">
+        <label for="inimg3" id="label3" class="inimglabel">
+            <img src="../static/images/preimg.png" class="preimg" id="preimg3">
+        </label>
+        <input type="file" class="inimg" id="inimg4" name="inimg4" accept=".jpg,.jpeg,.png" required="required">
+        <label for="inimg4" id="label4" class="inimglabel">
+            <img src="../static/images/preimg.png" class="preimg" id="preimg4">
+        </label>
+        <br>
+        个人简介<br><textarea name="introduction" cols="40" rows="10" placeholder="简单介绍介绍，可说说有无相关经验"></textarea><br>
+        <input type="reset" value="重置表单">
+        <input type="submit" value="提交申请"><br>
+        
+    </form>
+</div>
+</body>
+<script>
+    
+    var imgbtn1 = document.querySelector('#label1');
+    var imgbtn2 = document.querySelector('#label2');
+    var imgbtn3 = document.querySelector('#label3');
+    var imgbtn4 = document.querySelector('#label4');
+
+    var imgpic1 = document.querySelector('#inimg1');
+    var imgpic2 = document.querySelector('#inimg2');
+    var imgpic3 = document.querySelector('#inimg3');
+    var imgpic4 = document.querySelector('#inimg4');
+
+    var preimg1 = document.querySelector('#preimg1');
+    var preimg2 = document.querySelector('#preimg2');
+    var preimg3 = document.querySelector('#preimg3');
+    var preimg4 = document.querySelector('#preimg4');
+    imgpic1.addEventListener('change',function(){
+        if(imgpic1.files.length!=0){
+        imgbtn2.style.display="inline-block";
+        preimg1.src=URL.createObjectURL(imgpic1.files[0]);
+        }
+    })
+    imgpic2.addEventListener('change',function(){
+        if(imgpic2.files.length!=0){
+        imgbtn3.style.display="inline-block";
+        preimg2.src=URL.createObjectURL(imgpic2.files[0]);
+        }
+    })
+    imgpic3.addEventListener('change',function(){
+        if(imgpic3.files.length!=0){
+        imgbtn4.style.display="inline-block";
+        preimg3.src=URL.createObjectURL(imgpic3.files[0]);
+        }
+    })
+    imgpic4.addEventListener('change',function(){
+        if(imgpic4.files.length!=0){
+        preimg4.src=URL.createObjectURL(imgpic4.files[0]);
+        }
+    })
+    
+</script>
+
+</html>

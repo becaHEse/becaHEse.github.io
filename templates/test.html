@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,minimum-scale=1.0,user-scable=no">
+    <title>树洞</title>
+    <link rel="stylesheet" href="../static/style.css">
+</head>
+<body>
+    <!-- 头部登录 -->
+    <div class="loginhead">
+        <div class="loginhead-left">&nbsp;&nbsp;登录后才可使用完整服务</div>
+        <div class="loginhead-right">点击授权登录&gt;</div>
+    </div>
+    <!-- 搜索 -->
+    <div class="search">
+        <div class="search-left">
+            <span class="search-logo"></span>
+            <input type="text" placeholder="搜索店员">
+        </div>
+        <div class="search-right">搜 索</div>
+    </div>
+    <div class="nothing"></div>
+    <div class="notice"> 广告位招租/广告位招租/广告位招租</div>
+    <!-- 榜前三 -->
+    <div class="ranking">
+        <div class="rank-title">
+            <span class="nvshen">女神榜</span>
+            <div class="longline"></div>
+            <span class="nanshen">男神榜</span>
+        </div>
+        <div class="rank-3pic">
+            <div class="rank-2 rank-123">
+                <img src="../static/images/clerk_s.jpg" alt="" class="rank23profile">
+                <img src="../static/images/rank2logo.png" alt="" class="rank23logo">
+                <p>无</p>
+            </div>
+            <div class="rank-1 rank-123">
+                <img src="../static/images/clerk_s.jpg" alt="" class="rank1profile">
+                <img src="../static/images/rank1logo.png" alt="" class="rank1logo">
+                <p>无</p>
+            </div>
+            <div class="rank-3 rank-123">
+                <img src="../static/images/clerk_s.jpg" alt="" class="rank23profile">
+                <img src="../static/images/rank3logo.png" alt="" class="rank23logo">
+                <p>无</p>
+            </div>
+        </div>
+    </div>
+    <!-- 新人推荐 -->
+    <div class="recommend">
+        <h3 style="padding:15px">新人推荐</h3>
+        <div class="newimgsdiv">
+            {% for new in data_list_new %}
+            <div class="newpicword">
+            <img src="../static/images/clerk/{{new.imgurl}}-1.jpg" class="newimg">
+            <span class="newword">{{new.username}}</span>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+    <div class="kind_selection clearfix">
+        <div class="sexy">性别</div>
+        <div class="level">等级</div>
+        <div class="province">省份</div>
+    </div>
+    <div class="first_impression">
+        {% for item in data_list_b %}
+        <form action="test_detail" style="display:none;">
+            <input type="number" name="id" value={{item.id}}>
+            <input type="submit" id="test_next{{item.id}}">
+        </form>
+        <label for="test_next{{item.id}}">
+        <div class="every_clerk">
+        <div class="pic_level">
+        <div class="divprofile">
+        <img src="../static/images/clerk/{{item.imgurl}}-1.jpg" class="profile">
+        </div>
+        <h6 class="leveltag">{{level_dict[item.level]}}</h6>
+        </div>
+        <div class="clerk_firstinfo">
+            <div class="firstinfo_row1">
+                <div class="name">{{item.username}}
+                    {% if item.sexy=="男" %}
+                    <span class="sexytag" style="color: rgb(5, 5, 161);">♂</span>
+                    {% elif item.sexy=='女' %}
+                    <span class="sexytag" style="color:rgb(248, 105, 129);">♀</span>
+                    {% endif %}
+                </div>
+                <div class="service">{{item.service}}</div>
+            </div>
+            
+            <div class="tags">
+                {% if item.tag1 %}
+                <span class="tag">{{item.tag1}}</span>
+                {% endif %}
+                {% if item.tag2 %}
+                <span class="tag">{{item.tag2}}</span>
+                {% endif %}
+                {% if item.tag3 %}
+                <span class="tag">{{item.tag3}}</span>
+                {% endif %}
+                {% if item.tag4 %}
+                <span class="tag">{{item.tag4}}</span>
+                {% endif %}
+                {% if item.tag5 %}
+                <span class="tag">{{item.tag5}}</span>
+                {% endif %}
+            </div>
+            <div class="firstinfo_row3 clearfix">
+                <div class="voice">
+                    <p>播放</p>
+                </div>
+                <span class="right_button">&gt;</span>
+            </div>
+        </div> 
+    </div>
+</label>
+        {% endfor %}
+    </div>
+    <!-- 下导航栏 -->
+    <div class="footer">
+        <div class="chooseone">精挑细选</div>
+        <div class="randomone">随机盲盒</div>
+        <div class="peronal_center">个人中心</div>
+    </div>
+</body>
+<script>
+    var data_list_t_boy = {{data_list_t_boy|safe}};
+    var data_list_t_girl= {{data_list_t_girl|safe}};
+
+    var rank2 = document.getElementsByClassName('rank-2')[0];
+    var rank2img = rank2.children[0];
+    var rank2p= rank2.children[2];
+
+    var rank1 = document.getElementsByClassName('rank-1')[0];
+    var rank1img = rank1.children[0];
+    var rank1p= rank1.children[2];
+
+    var rank3 = document.getElementsByClassName('rank-3')[0];
+    var rank3img = rank3.children[0];
+    var rank3p= rank3.children[2];
+
+    var nvshen = document.getElementsByClassName('nvshen')[0];
+    var nanshen = document.getElementsByClassName('nanshen')[0];
+
+    function fn1(){
+        nanshen.style.backgroundColor="#ffffff";
+        nanshen.style.color="#ef5b9c";
+        nvshen.style.backgroundColor="#ef5b9c";
+        nvshen.style.color="#ffffff";
+        
+        if(data_list_t_girl[1].imgurl!=''){
+            rank2img.src="../static/images/clerk/"+data_list_t_girl[1].imgurl+'-1.jpg';
+            rank2p.innerHTML=data_list_t_girl[1].username;
+        }
+        if(data_list_t_girl[0].imgurl!=''){
+            rank1img.src="../static/images/clerk/"+data_list_t_girl[0].imgurl+'-1.jpg';
+            rank1p.innerHTML=data_list_t_girl[0].username;
+        }
+        if(data_list_t_girl[2].imgurl!=''){
+            rank3img.src="../static/images/clerk/"+data_list_t_girl[2].imgurl+'-1.jpg';
+            rank3p.innerHTML=data_list_t_girl[2].username;
+        }
+    }
+    function fn2(){
+        nvshen.style.backgroundColor="#ffffff";
+        nvshen.style.color="#ef5b9c";
+        nanshen.style.backgroundColor="#ef5b9c";
+        nanshen.style.color="#ffffff";
+        if(data_list_t_boy[1].imgurl!=''){
+            rank2img.src="../static/images/clerk/"+data_list_t_boy[1].imgurl+'-1.jpg';
+            rank2p.innerHTML=data_list_t_boy[1].username;
+        }
+        if(data_list_t_boy[0].imgurl!=''){
+            rank1img.src="../static/images/clerk/"+data_list_t_boy[0].imgurl+'-1.jpg';
+            rank1p.innerHTML=data_list_t_boy[0].username;
+        }
+        if(data_list_t_boy[2].imgurl!=''){
+            rank3img.src="../static/images/clerk/"+data_list_t_boy[2].imgurl+'-1.jpg';
+            rank3p.innerHTML=data_list_t_boy[2].username;
+        }
+    }
+    fn1();
+
+    nvshen.addEventListener('click',fn1);
+    nanshen.addEventListener('click',fn2);
+</script>
+</html>

@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>新店员申请详情</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+        body {
+            font: 14px "Microsoft YaHei";
+            line-height: 1.5;
+        }
+        .detail {
+            padding: 15px;
+        }
+        .apply_title {
+            height: 25px;
+            padding: 10px 15px;
+            border-bottom: 1px solid gray;
+        }
+        .title_left {
+            float: left;
+        }
+        .state {
+            float: right;
+            color: white;
+            background-color: #07c160;
+            font-weight: 700;
+            padding: 3px;
+        }
+        .applicant .picword{
+            display: inline-block;
+        }
+
+        img {
+            width: 23%;
+            vertical-align: middle;
+            object-fit: cover;
+        }
+        #wximg {
+            height: 40px;
+            width: auto;
+        }
+        .fourimg {
+            display: inline-block;
+            width: 60%;
+        }
+        .detail>div {
+            margin: 15px auto;
+        }
+        .detail span {
+            display: inline-block;
+            width: 60px;
+            padding-right: 40px;
+        }
+        .introduction h4 {
+            display: inline-block;
+            
+        }
+        .confirm_add {
+            width: 100%;
+            background-color: #07c160;
+            color: white;
+            font-weight: 700;
+            height: 50px;
+            text-align: center;
+            line-height: 50px;
+            font-size: 20px;
+        }
+        form {
+            display: none;
+        }
+        .enlarge {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 700px;
+            background-color: rgba(222, 225, 230,0.5);
+            /* opacity: 0.5; */
+            text-align: center;
+            z-index: 1;
+        }
+        #enlargeimg {
+            margin-top: 150px;
+            width: 95%;
+            border: 1px solid gray;
+            z-index: 2;
+        }
+        .closelarge {
+            position: fixed;
+            right: 5%;
+            top: 120px;
+            z-index: 2;
+            width: 10px;
+            height: 10px;
+            font-weight: 1000;
+            font-size: 20px;
+
+        }
+    </style>
+</head>
+<body>
+    <div class="apply_title">
+        <div class="title_left">
+            <span>新店员申请</span>
+            <span class="id">[id={{data_list.id}}]</span>
+        </div>
+
+        {% if data_list.isclerk=="1" %}
+        <div class="state">已通过</div>
+        {% elif data_list.isclerk=="0" %}
+        <div class="state" style="background-color: #ce9178;">待审核</div>
+        {% elif data_list.isclerk=="2" %}
+        <div class="state" style="background-color: red;">未通过</div>
+        {% endif %}
+    </div>
+    <div class="detail">
+    <div class="applicant">
+        <span>申请人</span>
+        <div class="picword">
+            <img src="../static/images/clerk_s1.jpg" id="wximg">
+            <strong>桃</strong>
+        </div>
+    </div>
+    <div class="pic">
+        <span>图片</span>
+        <div class="fourimg">
+        <img src="../static/images/apply/{{data_list.imgurl}}-1.jpg" alt="">
+        <img src="../static/images/apply/{{data_list.imgurl}}-2.jpg" alt="">
+        <img src="../static/images/apply/{{data_list.imgurl}}-3.jpg" alt="">
+        <img src="../static/images/apply/{{data_list.imgurl}}-4.jpg" alt="">
+        </div>
+    </div>
+    <div class="voice">
+        <span>录音</span>
+        <button>播放录音</button>
+    </div>
+    <div class="username">
+        <span>昵称</span>
+        <strong>{{data_list.username}}</strong>
+    </div>
+    <div class="sexy">
+        <span>性别</span>
+        <strong>{{data_list.sexy}}</strong>
+    </div>
+    <div class="age">
+        <span>年龄</span>
+        <strong>{{data_list.age}}</strong>
+    </div>
+    <div class="wxid">
+        <span>微信号</span>
+        <strong>{{data_list.wxid}}</strong>
+    </div>
+    <div class="tel">
+        <span>手机号</span>
+        <strong>{{data_list.tel}}</strong>
+    </div>
+    <div class="area">
+        <span>城市</span>
+        <strong>{{data_list.area}}</strong>
+    </div>
+    <div class="introduction">
+        <span>个人简介</span>
+        <h4>{{data_list.introduction}}</h4>
+    </div>
+</div>
+    
+        {% if data_list.isclerk=="1" %}
+        <div class="confirm_add" id="add_success">已添加为店员</div>
+        {% else %}
+        <form action="check_success" method="post">
+            <input type="text" name="isclerk" value="1">
+            <input type="text" name="id" value={{data_list.id}}>
+            <input type="submit" id="confirm">
+        </form>
+        <label for="confirm">
+            <div class="confirm_add" id="confirm">添加为店员</div>
+        </label>
+        {% endif %}
+        {% if data_list.isclerk=="0" %}
+        <form action="check_success" method="post">
+            <input type="text" name="isclerk" value="2">
+            <input type="text" name="id" value={{data_list.id}}>
+            <input type="submit" id="confirm2">
+        </form>
+        <label for="confirm2">
+        <div class="add_fail confirm_add" id="add_fail" style="background-color:pink">暂不通过</div>
+    </label>
+    {% endif %}
+    <div class="enlarge">
+        <img src="" id="enlargeimg">
+        <div class="closelarge">x</div>
+    </div>
+
+    <script>
+        var wximg=document.getElementById('wximg');
+        var fourimg=document.getElementsByClassName('fourimg')[0];
+        var enlargeimg=document.getElementById('enlargeimg');
+        var enlargediv=document.getElementsByClassName('enlarge')[0];
+        var close=document.getElementsByClassName('closelarge')[0];
+        
+        fourimg.addEventListener('click',function(){
+            imgtarget=event.target;
+            console.log(imgtarget);
+            console.log(fourimg);
+            
+            if(imgtarget!=fourimg){
+                enlargeimg.src=imgtarget.src;
+                console.log(imgtarget.src);
+                enlargediv.style.display='block';
+            }
+        })
+        close.addEventListener('click',function(){
+            enlargediv.style.display='none';
+
+        })
+    </script>
+</body>
+</html>
